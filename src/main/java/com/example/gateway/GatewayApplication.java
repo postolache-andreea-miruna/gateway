@@ -21,21 +21,14 @@ class RouteConfiguration {
 	public RouteLocator myRoutes(RouteLocatorBuilder builder) {
 		return builder.routes()
 				.route(p -> p
-						.path("/awbd/salesOff/**")
-						.filters(f -> f.rewritePath("/awbd/salesOff/(?<segment>.*)","/${segment}")
+						.path("/bookshop/salesOff/**")
+						.filters(f -> f.rewritePath("/bookshop/salesOff/(?<segment>.*)","/${segment}")
 								.addResponseHeader("X-Response-Time",new Date().toString()))
 						.uri("lb://SALESOFF")) //ln load balancer + application_name
 				.route(p -> p
-						.path("/awbd/BookShop-Spring-Cloud/**")
-						.filters(f -> f.rewritePath("/awbd/BookShop-Spring-Cloud/(?<segment>.*)","/${segment}")
+						.path("/bookshop/BookShop-Spring-Cloud/**")
+						.filters(f -> f.rewritePath("/bookshop/BookShop-Spring-Cloud/(?<segment>.*)","/${segment}")
 								.addResponseHeader("X-Response-Time",new Date().toString()))
 						.uri("lb://BOOKSHOP-SPRING-CLOUD")).build();
 	}
-//	@Bean
-//	public RouterFunction<ServerResponse> gatewayRouterFunctionsRewritePath() {
-//		return route("rewritepath_route")
-//				.GET("/red/**", http("https://example.org"))
-//				.before(rewritePath("/red/(?<segment>.*)", "/${segment}"))
-//				.build();
-//	}
 }

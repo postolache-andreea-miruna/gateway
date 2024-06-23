@@ -22,7 +22,7 @@ public class ResponseFilter {
                                 if (requestHeaders.get(CORRELATION_ID) != null)
                                     correlationId = requestHeaders.get(CORRELATION_ID).stream().findFirst().get();
 
-                                log.info("Updated the correlation id to response headers: {}", correlationId);
+                                log.info("Updated correlation id to response headers: {}", correlationId);
                                 exchange.getResponse().getHeaders().add(CORRELATION_ID, correlationId);
                             }
                     )
